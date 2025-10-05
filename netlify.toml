@@ -1,0 +1,8 @@
+[build]
+  command = "npm install --legacy-peer-deps && ng build --configuration production"
+  publish = "dist/outagecompare-temp"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
