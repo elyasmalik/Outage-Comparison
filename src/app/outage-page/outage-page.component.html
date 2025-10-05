@@ -1,0 +1,55 @@
+<div class="container py-5">
+  <h2 class="text-center text-primary mb-4">📊 Network Outage Comparison</h2>
+
+  <!-- Dashboard -->
+  <div class="row g-3 mb-4">
+    <div class="col-md-3">
+      <div class="dashboard-card roshan-card">
+        <h5>Roshan TTs</h5>
+        <p>{{roshanData.length}}</p>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="dashboard-card accepted-card">
+        <h5>Accepted</h5>
+        <p>{{totalAccepted}}</p>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="dashboard-card rejected-card">
+        <h5>Rejected</h5>
+        <p>{{totalRejected}}</p>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="dashboard-card total-card">
+        <h5>Operator TTs</h5>
+        <p>{{shareData.length}}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Excel Import -->
+  <div class="card mb-4 shadow-sm p-3">
+    <h5 class="mb-3">📂 Import Excel Files</h5>
+    <app-excel-import 
+      (roshanDataChange)="onRoshanData($event)" 
+      (otherDataChange)="onShareData($event)">
+    </app-excel-import>
+  </div>
+
+  <!-- Search -->
+  <div class="card mb-4 shadow-sm p-3">
+    <h5 class="mb-3">🔍 Search</h5>
+    <app-site-filter (filterChange)="onFilterChange($event)"></app-site-filter>
+  </div>
+
+  <!-- Outage Table -->
+  <div class="card shadow-sm p-3">
+    <app-outage-table 
+      [roshanData]="roshanData" 
+      [otherData]="shareData" 
+      [filter]="filter">
+    </app-outage-table>
+  </div>
+</div>

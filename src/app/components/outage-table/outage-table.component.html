@@ -1,0 +1,38 @@
+<div class="table-responsive outage-table-container">
+  <table class="table table-hover table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th>#</th>
+        <th>Roshan TTs</th>
+        <th>Roshan Site ID</th>
+        <th>Roshan Start</th>
+        <th>Roshan End</th>
+        <th>Operator TTs</th>
+        <th>Operator Site ID</th>
+        <th>Operator Start</th>
+        <th>Operator End</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let row of comparisonResults; let i = index">
+        <tr>
+          <td>{{i + 1}}</td>
+          <td>{{row.roshanTTs}}</td>
+          <td>{{row.roshanSiteID}}</td>
+          <td>{{row.roshanStart}}</td>
+          <td>{{row.roshanEnd}}</td>
+          <td>{{row.otherTTs}}</td>
+          <td>{{row.otherSiteID}}</td>
+          <td>{{row.otherStart}}</td>
+          <td>{{row.otherEnd}}</td>
+          <td>
+            <span class="badge" [ngClass]="{'bg-success': row.status==='Confirmed','bg-danger': row.status==='Rejected'}">
+              {{row.status}}
+            </span>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>

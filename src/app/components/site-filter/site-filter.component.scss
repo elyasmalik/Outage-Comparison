@@ -1,0 +1,16 @@
+.site-filter-container {
+  width: 100%;
+  .filter-input {
+    width: 100%;
+    border-radius: 8px;
+    padding: 0.5rem 0.8rem;
+    border: 1px solid #ced4da;
+    transition: all 0.2s;
+
+    &:focus {
+      border-color: #0d6efd;
+      box-shadow: 0 0 0 0.15rem rgba(13,110,253,0.25);
+      outline: none;
+    }
+  }
+}

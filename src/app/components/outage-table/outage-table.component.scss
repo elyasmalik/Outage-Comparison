@@ -1,0 +1,12 @@
+.outage-table-container {
+  margin-top: 1rem;
+
+  table {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    th, td { text-align: center; vertical-align: middle; }
+    tr:hover { background-color: rgba(13,110,253,0.05); }
+  }
+
+  .badge { font-size: 0.85rem; padding: 0.4em 0.7em; }
+}

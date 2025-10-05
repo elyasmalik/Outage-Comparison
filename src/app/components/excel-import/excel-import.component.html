@@ -1,0 +1,19 @@
+<div class="excel-import-container">
+  <label class="btn btn-primary import-btn">
+    📂 Import Roshan Excel
+    <input type="file" accept=".xlsx,.xls" hidden (change)="onFileChange($event, 'roshan')">
+  </label>
+
+  <label class="btn btn-secondary import-btn">
+    📂 Import Share Operator Excel
+    <input type="file" accept=".xlsx,.xls" hidden (change)="onFileChange($event, 'other')">
+  </label>
+
+  <div *ngIf="loading" class="spinner-container">
+    <div class="spinner-border spinner-border-sm text-info"></div> Importing...
+  </div>
+
+  <div *ngIf="!loading && successMessage" class="alert alert-success mt-2">
+    {{ successMessage }}
+  </div>
+</div>
