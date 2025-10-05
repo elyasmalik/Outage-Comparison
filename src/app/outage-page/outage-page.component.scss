@@ -1,21 +1,49 @@
 .dashboard-card {
-  border-radius: 12px;
-  padding: 1.5rem;
+  flex: 1 1 200px;
+  min-width: 220px;
+  max-width: 260px;
+  height: 120px;
+  border-radius: 16px;
+  padding: 1rem 1.5rem;
   text-align: center;
   color: #fff;
-  transition: transform 0.2s, box-shadow 0.2s;
-  cursor: default;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 
-  h5 { font-size: 0.95rem; margin-bottom: 0.5rem; }
-  p { font-size: 1.5rem; font-weight: 600; }
+  h5 {
+    font-size: 0.95rem;
+    margin: 0 0 0.5rem 0;
+    font-weight: 500;
+  }
+  p {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+  }
 
-  &:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+  }
 }
 
-.total-card { background-color: #6c757d; }
-.accepted-card { background-color: #198754; }
-.rejected-card { background-color: #dc3545; }
-.roshan-card { background-color: #0dcaf0; }
+/* Colors */
+.total-card { background: linear-gradient(135deg, #6c757d, #495057); }
+.accepted-card { background: linear-gradient(135deg, #198754, #157347); }
+.rejected-card { background: linear-gradient(135deg, #dc3545, #a71d2a); }
+.roshan-card { background: linear-gradient(135deg, #0dcaf0, #0a95b6); color: #033; }
+.confirmed-minutes-card { background: linear-gradient(135deg, #0b5a3f, #06472f); }
 
-.card { border-radius: 12px; }
-input.form-control { border-radius: 8px; }
+.five-cards-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 1rem;
+  flex-wrap: nowrap;
+  margin-bottom: 1.5rem;
+    margin-left: -2rem;
+}
+

@@ -1,30 +1,36 @@
-<div class="container py-5">
+<div class="container py-5"> 
   <h2 class="text-center text-primary mb-4">📊 Network Outage Comparison</h2>
 
-  <!-- Dashboard -->
-  <div class="row g-3 mb-4">
-    <div class="col-md-3">
+  <!-- Dashboard: 5 cards -->
+  <div class="five-cards-row mb-4">
+    <div class="card-col">
       <div class="dashboard-card roshan-card">
         <h5>Roshan TTs</h5>
-        <p>{{roshanData.length}}</p>
+        <p>{{ roshanData.length }}</p>
       </div>
     </div>
-    <div class="col-md-3">
+    <div class="card-col">
       <div class="dashboard-card accepted-card">
         <h5>Accepted</h5>
-        <p>{{totalAccepted}}</p>
+        <p>{{ totalAccepted }}</p>
       </div>
     </div>
-    <div class="col-md-3">
+    <div class="card-col">
       <div class="dashboard-card rejected-card">
         <h5>Rejected</h5>
-        <p>{{totalRejected}}</p>
+        <p>{{ totalRejected }}</p>
       </div>
     </div>
-    <div class="col-md-3">
+    <div class="card-col">
       <div class="dashboard-card total-card">
         <h5>Operator TTs</h5>
-        <p>{{shareData.length}}</p>
+        <p>{{ shareData.length }}</p>
+      </div>
+    </div>
+    <div class="card-col">
+      <div class="dashboard-card confirmed-minutes-card">
+        <h5>Total Confirmed Minutes</h5>
+        <p>{{ totalConfirmedMinutes | number:'1.0-0' }} min</p>
       </div>
     </div>
   </div>
@@ -42,6 +48,11 @@
   <div class="card mb-4 shadow-sm p-3">
     <h5 class="mb-3">🔍 Search</h5>
     <app-site-filter (filterChange)="onFilterChange($event)"></app-site-filter>
+  </div>
+
+  <!-- Export Button -->
+  <div class="mb-3 d-flex justify-content-end">
+    <button class="btn btn-success" (click)="exportToExcel()">📥 Export Table to Excel</button>
   </div>
 
   <!-- Outage Table -->
