@@ -97,7 +97,35 @@ export class OutagePageComponent {
       });
     });
 
-    this.comparisonResults = tempResults
+    // -------------------------
+    // IMPORTANT: compute summaries from full (unfiltered) tempResults
+    // so totals always represent Roshan + Operator TTs (not only displayed rows)
+    // -------------------------
+    const fullResults = tempResults;
+
+    // Total TTs is the sum of original lists (Roshan + Operator)
+    this.totalTTs = this.roshanData.length + this.shareData.length;
+
+    // Accepted = number of confirmed rows (pairs) in full results
+    this.totalAccepted = fullResults.filter((r) => r.status === 'Confirmed').length;
+
+    // Rejected = total TTs minus accepted pairs (matches your expected calculation)
+    this.totalRejected = this.totalTTs - this.totalAccepted;
+
+    // total confirmed minutes computed from confirmed rows in full results
+    this.totalConfirmedMinutes = fullResults
+      .filter((r) => r.status === 'Confirmed')
+      .reduce((sum, r) => {
+        const start = this.parseDate(r.roshanStart);
+        const end = this.parseDate(r.roshanEnd);
+        if (this.isValidDate(start) && this.isValidDate(end)) {
+          return sum + (end.getTime() - start.getTime()) / 60000;
+        }
+        return sum;
+      }, 0);
+
+    // Apply UI filters only to displayed comparison results (do not affect summary)
+    this.comparisonResults = fullResults
       .filter(
         (r) =>
           Object.values(r).some((v) =>
@@ -110,26 +138,6 @@ export class OutagePageComponent {
       .sort((a, b) =>
         a.status === b.status ? 0 : a.status === 'Confirmed' ? -1 : 1
       );
-
-    this.totalTTs = this.comparisonResults.length;
-    this.totalAccepted = this.comparisonResults.filter(
-      (r) => r.status === 'Confirmed'
-    ).length;
-    this.totalRejected = this.comparisonResults.filter(
-      (r) => r.status === 'Rejected'
-    ).length;
-
-    // total confirmed minutes
-    this.totalConfirmedMinutes = this.comparisonResults
-      .filter((r) => r.status === 'Confirmed')
-      .reduce((sum, r) => {
-        const start = this.parseDate(r.roshanStart);
-        const end = this.parseDate(r.roshanEnd);
-        if (this.isValidDate(start) && this.isValidDate(end)) {
-          return sum + (end.getTime() - start.getTime()) / 60000;
-        }
-        return sum;
-      }, 0);
   }
 
   formatMinutes(minutes: number): string {
